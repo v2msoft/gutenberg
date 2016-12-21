@@ -1,1 +1,7 @@
-*.exe
+# IDE files & folders
+.idea
+*.iml
+
+# Binary files
+src/*.exe
+src/gutenberg
