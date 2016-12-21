@@ -2,8 +2,9 @@ package main
 
 import (
 	"fmt"
-	"log"
 	"github.com/SebastiaanKlippert/go-wkhtmltopdf"
+	"log"
+	"os"
 )
 
 func ExampleNewPDFGenerator() {
@@ -33,17 +34,23 @@ func ExampleNewPDFGenerator() {
 
 }
 
+func main() {
 
-func main(){
+	//Try to load the application configurations. If error is returned stop execution.
+	config, err := LoadConfiguration()
+	if err != nil {
+		fmt.Println(err.Error())
+		os.Exit(CONFIGURATION_FILE_ERROR_EXIT_STATUS)
+	}
 
 	//Set the WkhtmlToPdf path depending on the operating system that is
 	//executing the binary file.
-	err := SetHtmlToPdfBinaryPath()
-
-	if(err != nil){
+	err = SetHtmlToPdfBinaryPath()
+	if err != nil {
 		fmt.Println(err.Error())
-	}else{
-		ExampleNewPDFGenerator()
+		os.Exit(HTML_TO_PDF_CONVERTER_BINARY_ERROR_EXIT_STATUS)
 	}
+
+	fmt.Printf("%v", config)
 
 }

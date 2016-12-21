@@ -2,6 +2,8 @@
 .idea
 *.iml
 
-# Binary files
-src/*.exe
-src/gutenberg
+# Distribution files
+dist/
+
+# Configuration file
+src/config.json
